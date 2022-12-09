@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 1rem;
+}
+
+.booksList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  list-style-type: none;
+}
+
+.link {
+  color: inherit;
+  text-decoration: inherit;
+  border: 1px solid black;
+}
