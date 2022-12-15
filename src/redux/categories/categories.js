@@ -1,6 +1,7 @@
 const CHECK = 'bookstore-react/categories/CHECK';
+const initialState = [];
 
-const categoriesReducer = (state = [], action) => {
+const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHECK:
       return action.payload;
