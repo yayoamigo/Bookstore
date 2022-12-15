@@ -9,7 +9,7 @@ const categoriesReducer = (state = [], action) => {
   }
 };
 
-export const ceckAction = () => ({
+export const checkAction = () => ({
   type: CHECK,
   payload: 'Under construction',
 });
