@@ -1,15 +1,19 @@
 import React from "react"
 import Book from "./Book"
+import { useSelector } from "react-redux";
 
-const BookList = (props) => {
+const BookList = () => {
+  const books = useSelector((state) => state.books);
  return (
     <ul className="booksList">
-     {props.list.map(book => (
+     {books.map(book => (
+   <li  key={book.id}> 
      <Book
-     key={book.id}
+     id={book.id}
      title={book.title}
      author={book.author}
-     />
+     />  
+    </li>
     ))}
     </ul>
   )

@@ -1,17 +1,32 @@
 import React, { useState } from "react"
+import { useDispatch } from 'react-redux';
+import { addBook } from "../redux/books/books";
+import { v4 as uuidv4 } from 'uuid';
 
-function Form() {
- const [inputText, setInputText] = useState({
-  title: "",
-  author: ""
-})
+const Form = () => {
+  const [inputText, setInputText] = useState({
+    title: "",
+    author: ""
+  })
+  const dispatch = useDispatch();
+  
+  const onChange = e => {
+   setInputText({
+     ...inputText,
+     [e.target.name]: e.target.value,
+   })
+  } 
+   
 
-const onChange = e => {
- setInputText({
-   ...inputText,
-   [e.target.name]: e.target.value,
- })
-}
+  const addBookHandler = e => {
+    e.preventDefault();
+    const {title, author} = inputText;
+    if(title && author){
+      dispatch(addBook({title,author, id: uuidv4()}));
+      setInputText({title: '', author: ''})
+    };
+   };
+
   return (
     <form >
      <input
@@ -30,9 +45,10 @@ const onChange = e => {
         name="author"
         onChange={onChange}
       />
-      <button>add</button>
-    </form>
-  )
-}
+      <button type="button" onClick={addBookHandler}>ADD BOOK</button>
+      </form>
+  );
+};
 
-export default Form
+
+export default Form ;
