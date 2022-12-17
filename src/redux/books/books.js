@@ -13,13 +13,8 @@ const bookReducer = (state = initialState, action) => {
       return [
         ...state, action.book,
       ];
-    case REMOVE: {
-      const index = state.findIndex((x) => x.id === action.book.id);
-      return [
-        ...state.slice(0, index),
-        ...state.slice(index + 1),
-      ];
-    }
+    case REMOVE:
+      return state.filter((book) => book.item_id !== action.book);
     case FETCH_BOOKS: {
       const bookList = [];
       Object.entries(action.books).forEach(([key, value]) => bookList.push({
@@ -28,7 +23,7 @@ const bookReducer = (state = initialState, action) => {
         author: value[0].author,
         category: value[0].category,
       }));
-      return [...bookList];
+      return bookList;
     }
     default:
       return state;
@@ -69,9 +64,9 @@ export const deleteBooks = createAsyncThunk(REMOVE, async (bookId, thunkAPI) => 
       'Content-Type': 'application/json',
     },
   });
-  const dataId = await response.text();
-  thunkAPI.dispatch(removeBook(bookId));
-  return dataId;
+  console.log(response);
+  await thunkAPI.dispatch(removeBook(bookId));
+  return response.data;
 });
 
 export const postBooks = createAsyncThunk(ADD, async (book, thunkAPI) => {
@@ -82,9 +77,8 @@ export const postBooks = createAsyncThunk(ADD, async (book, thunkAPI) => {
       'Content-Type': 'application/json',
     },
   });
-  const data = await response.text();
-  thunkAPI.dispatch(addBook(book));
-  return data;
+  await thunkAPI.dispatch(addBook(book));
+  return response.data;
 });
 
 export default bookReducer;

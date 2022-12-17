@@ -23,7 +23,7 @@ const Form = () => {
     e.preventDefault();
     const {title, author, category} = inputText;
     if(title && author && category){
-      dispatch(postBooks({title,author,category, id: uuidv4()}));
+      dispatch(postBooks({ item_id: uuidv4(),title,author,category}));
       setInputText({title: '', author: '', category: ''})
     };
    };
