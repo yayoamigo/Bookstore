@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import Navbar from './pages/Navbar';
 import Books from './pages/Books';
-import Categorie from './pages/Categorie';
+import Categories from './pages/Categories';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Books />} />
-        <Route path="Categorie" element={<Categorie />} />
+        <Route path="Categories" element={<Categories />} />
       </Routes>
 
     </div>

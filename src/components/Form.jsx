@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useDispatch } from 'react-redux';
 import { postBooks } from "../redux/books/books";
 import { v4 as uuidv4 } from 'uuid';
+import '../styles/Form.css';
 
 const Form = () => {
   const [inputText, setInputText] = useState({
@@ -29,31 +30,34 @@ const Form = () => {
    };
 
   return (
-    <form >
-     <input
+    <div className="add-book">
+      <h2>ADD NEW BOOK</h2>
+      <form >
+      <input
         type="text"
-        className="input-title"
         placeholder="Book title..."
         value={inputText.title}
         name="title"
         onChange={onChange}
+        id="input-title"
       />
       <input
         type="text"
-        className="input-title"
+        id="input-author"
         placeholder="Add an author..."
         value={inputText.author}
         name="author"
         onChange={onChange}
       />
-      <select type="text" name="category" className="input-title" value={inputText.category} placeholder="Category" onChange={onChange}>
+      <select type="text" id="input-category" name="category"  value={inputText.category} placeholder="Category" onChange={onChange}>
           <option value="" disabled>Categories</option>
           <option value="fiction">Fiction</option>
           <option value="non-fiction">Non-Fiction</option>
           <option value="biography">Biography</option>
         </select>
-      <button type="button" onClick={addBookHandler}>ADD BOOK</button>
+      <button type="button" className="btn-add-book" onClick={addBookHandler}>ADD BOOK</button>
       </form>
+    </div>
   );
 };
 

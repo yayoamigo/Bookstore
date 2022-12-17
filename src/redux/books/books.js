@@ -64,7 +64,6 @@ export const deleteBooks = createAsyncThunk(REMOVE, async (bookId, thunkAPI) => 
       'Content-Type': 'application/json',
     },
   });
-  console.log(response);
   await thunkAPI.dispatch(removeBook(bookId));
   return response.data;
 });

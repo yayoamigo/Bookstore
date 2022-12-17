@@ -1,29 +1,56 @@
 import React, { useEffect } from 'react';
 import Book from "./Book"
 import { useSelector, useDispatch } from "react-redux";
-import { getBooks } from '../redux/books/books';
+import '../styles/Books.css';
+import { deleteBooks } from '../redux/books/books';
 
 
 const BookList = () => {
   const books = useSelector((state) => state.books);
   const dispatch = useDispatch();
-  useEffect(() =>{
-  dispatch(getBooks());
-  }, []);
- return (
-    <ul className="booksList">
-     {books.map(book => (
-   <li  key={book.item_id}> 
-     <Book
-     item_id={book.item_id}
-     title={book.title}
-     author={book.author}
-     category={book.category}
-     />  
-    </li>
-    ))}
+  return (
+    <ul>
+      {books.map((book) => (
+        <li key={book.item_id}>
+          <div className="book-details">
+            <Book
+              title={book.title}
+              author={book.author}
+              category={book.category}
+            />
+            <div className="action-buttons">
+              <button className="btn" type="button">Comments</button>
+              <div className="divider" />
+              <button className="btn remove-btn" type="button" onClick={() => dispatch(deleteBooks(book.item_id))}>Remove</button>
+              <div className="divider" />
+              <button className="btn" type="button">Edit</button>
+            </div>
+          </div>
+          <div className="progress">
+            <div className="progress-circle" />
+            <div className="percentage">
+              <p className="percent">
+                {Math.floor(Math.random() * 101)}
+                %
+              </p>
+              <p className="completed">Completed</p>
+            </div>
+          </div>
+          <div className="column-divider" />
+          <div className="chapter">
+            <div className="chapter-info">
+              <p className="cur-chapter">CURRENT CHAPTER</p>
+              <p className="chapter-num">
+                Chapter
+                {' '}
+                {Math.floor(Math.random() * 101)}
+              </p>
+            </div>
+            <button type="button" className="progress-btn">UPDATE PROGRESS</button>
+          </div>
+        </li>
+      ))}
     </ul>
   );
 };
-
 export default BookList
