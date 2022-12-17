@@ -1,14 +1,19 @@
-import React, { useState } from "react"
-import BookList from "../components/BookList";
-import Form from "../components/Form";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import BookList from '../components/BookList';
+import Form from '../components/Form';
+import { getBooks } from '../redux/books/books';
+import '../styles/BookList.css';
 
-function Books() {
+const Books = () => {
+  const dispatch = useDispatch();
+  dispatch(getBooks());
   return (
-    <div>
+    <section className="books-section">
       <BookList />
       <Form />
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default Books
+export default Books;

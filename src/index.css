@@ -1,27 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
 * {
-  box-sizing: border-box;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.booksList {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-nav {
-  display: flex;
-}
-
-.navList {
-  display: flex;
-  list-style-type: none;
-}
-
-.link {
-  color: inherit;
-  text-decoration: inherit;
-  border: 1px solid black;
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0000000d;
+  color: #121212;
 }
